@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block body %}
+    <h1>Shopping cart Overzicht</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naam</th>
+                <th>Omschrijving</th>
+                <th>Prijs</th>
+                <th>Aantal</th>
+                <th>Totaal Bedrag</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in cart %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.naam }}</td>
+                <td>{{ product.omschrijving }}</td>
+                <td>{{ product.prijs }}</t  d>
+                <td>{{ product.aantal }}</td>
+                <td>{{ product.prijs * product.aantal }}</td>
+  
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
