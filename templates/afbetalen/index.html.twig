@@ -1,0 +1,20 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Hello AfbetalenController!{% endblock %}
+
+{% block body %}
+    <form method="post" action="Formulier.php">
+
+        <label for="naam">{{ 'Naam'|trans }}</label>
+        <input type="text" id="naam" name="naam" required="required" autocomplete="naam" />
+
+        <label for="email">{{ 'Email'|trans }}</label>
+        <input type="email" id="email" name="email" required="required" autocomplete="current-Email" />
+
+
+
+
+        <input type="submit" class="btn btn-success" id="_save" name="_save" value="{{ 'Save'|trans }}" />
+    </form>
+
+{% endblock %}

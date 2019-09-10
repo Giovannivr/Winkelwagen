@@ -18,21 +18,33 @@
             </tr>
         </thead>
         <tbody>
+        {% set totaaltje = 0 %}
         {% for product in cart %}
             <tr>
                 <td>{{ product.id }}</td>
                 <td>{{ product.naam }}</td>
                 <td>{{ product.omschrijving }}</td>
-                <td>{{ product.prijs }}</t  d>
+                <td> € <span>{{ product.prijs }}</span></td>
                 <td>{{ product.aantal }}</td>
-                <td>{{ product.prijs * product.aantal }}</td>
-  
+                <td>€ <span>{{ product.prijs * product.aantal }}</span></td>
+                {% set totaaltje = totaaltje + product.prijs * product.aantal %}
+
             </tr>
+
+
         {% else %}
             <tr>
                 <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
+
+
+        <tr>
+            <th>
+
+                totaal: &euro; <span>  {{ totaaltje }}</span>
+            </th>
+        </tr>
         </tbody>
     </table>
 

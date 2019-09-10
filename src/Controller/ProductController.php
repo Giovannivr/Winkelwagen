@@ -104,11 +104,11 @@ class ProductController extends AbstractController
      /**
      * @Route("/{id}/add", name="product_add", methods={"GET","POST"})
      */
-    public function add(Request $request, Product $product, $id): Response
+    public function add(Request $request, Product $product): Response
     {
         $em = $this->getDoctrine()->getManager();
         // haal de gegevens op van het gekozen product via $id in de product repository
-        $producten = $em->getRepository('App:Product')->findOneBySomeField($id);
+        $producten = $em->getRepository('App:Product')->findOneBySomeField($product->getId());
         # dump($producten);
         // schrijf de relevante gegevens in variabelen
         $idproduct = $producten->getid();
@@ -118,11 +118,11 @@ class ProductController extends AbstractController
      // deze regel hieronder gebruiken alleen om tijdens programmeren de sessie even helemaal leeg te maken voor Cart  
      //   $this->session->remove('Cart');
         $getCart = $this->session->get('Cart');
-            if(isset($getCart[$id])) {
-                $getCart[$id]['aantal']++;
+            if(isset($getCart[$product->getId()])) {
+                $getCart[$product->getId()]['aantal']++;
             }else {
             // de eerste keer dat in de sessie op add gedrukt wordt bij een product de waarden schrijven
-            $getCart[$id] = array('id' => $idproduct, 'naam' => $naam, 'omschrijving' => $omschrijving, 'aantal' => 1, 'prijs' => $prijs);
+            $getCart[$product->getId()] = array('id' => $idproduct, 'naam' => $naam, 'omschrijving' => $omschrijving, 'aantal' => 1, 'prijs' => $prijs);
 
             }
             
